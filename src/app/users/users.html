@@ -1,0 +1,49 @@
+<div class="contsainer my-5">
+    <p>Login Date (unformatted): {{todayDate}}</p>
+    <p>Login Date (formatted): {{todayDate | date : 'short'}}</p>
+    <h1 class="text-center my-3">All Users List</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Sl.no</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (user of allUsers | async; track $index;let i=$index) {
+                <tr>
+                <td>{{i+1}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.address.street}},{{user.address.city}},{{user.address.zipcode}}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    <h1 class="text-center my-3">All Todos </h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>UserId</th>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            @for (todo of allTodos(); track $index) {
+                <tr>
+                <td>{{todo.userId}}</td>
+                <td>{{todo.id}}</td>
+                <td>{{todo.title}}</td>
+                <td>{{todo.completed?"complete":"incomplete"}}</td>
+            </tr>
+            }
+            
+        </tbody>
+    </table>
+</div>
